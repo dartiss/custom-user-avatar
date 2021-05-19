@@ -2,14 +2,12 @@
 /**
  * Defines shortcodes.
  *
- * @package WP User Avatar
- * @version 1.9.13
+ * @package Custom User Avatar
  */
 
 class WP_User_Avatar_Shortcode {
   /**
    * Constructor
-   * @since 1.8
    * @uses object $wp_user_avatar
    * @uses add_action()
    * @uses add_shortcode()
@@ -28,7 +26,6 @@ class WP_User_Avatar_Shortcode {
 
   /**
    * Display shortcode
-   * @since 1.4
    * @param array $atts
    * @param string $content
    * @uses array $_wp_additional_image_sizes
@@ -130,7 +127,6 @@ class WP_User_Avatar_Shortcode {
 
   /**
    * Update user
-   * @since 1.8
    * @param bool $user_id
    * @uses add_query_arg()
    * @uses apply_filters()
@@ -153,13 +149,11 @@ class WP_User_Avatar_Shortcode {
       $redirect_url = esc_url_raw(add_query_arg(array('updated' => '1'), wp_get_referer()));
       /**
        * Filter redirect URL
-       * @since 1.9.12
        * @param string $redirect_url
        */
       $redirect_url = apply_filters('wpua_edit_user_redirect_url', $redirect_url);
       /**
        * Filter wp_safe_redirect or wp_redirect
-       * @since 1.9.12
        * @param bool $safe_redirect
        */
       $safe_redirect = apply_filters('wpua_edit_user_safe_redirect', true);
@@ -170,7 +164,6 @@ class WP_User_Avatar_Shortcode {
 
   /**
    * Edit shortcode
-   * @since 1.8
    * @param array $atts
    * @uses $wp_user_avatar
    * @uses $wpua_allow_upload
@@ -223,7 +216,6 @@ class WP_User_Avatar_Shortcode {
 
   /**
    * Edit form
-   * @since 1.8
    * @param object $user
    * @uses do_action()
    * @uses submit_button()
@@ -246,7 +238,6 @@ class WP_User_Avatar_Shortcode {
 
 /**
  * Initialize
- * @since 1.9.2
  */
 function wpua_shortcode_init() {
   global $wpua_shortcode;

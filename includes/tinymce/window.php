@@ -2,12 +2,10 @@
 /**
  * TinyMCE modal window.
  *
- * @package WP User Avatar
- * @version 1.9.13
+ * @package Custom User Avatar
  */
 
 /**
- * @since 1.2.1
  * @uses get_users()
  */
 
@@ -18,7 +16,7 @@ if(!defined('ABSPATH')) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title><?php _e('WP User Avatar', 'wp-user-avatar'); ?></title>
+  <title><?php _e('Custom User Avatar', 'wp-user-avatar'); ?></title>
   <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
   <base target="_self" />
   <script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js"></script>

@@ -2,13 +2,11 @@
 /**
  * TinyMCE button for Visual Editor.
  *
- * @package WP User Avatar
- * @version 1.9.13
+ * @package Custom User Avatar
  */
 
 /**
  * Add TinyMCE button
- * @since 1.9.5
  * @uses add_filter()
  * @uses get_user_option()
  */
@@ -23,7 +21,6 @@ add_action('init', 'wpua_add_buttons');
 
 /**
  * Register TinyMCE button
- * @since 1.9.5
  * @param array $buttons
  * @return array
  */
@@ -34,7 +31,6 @@ function wpua_register_button($buttons) {
 
 /**
  * Load TinyMCE plugin
- * @since 1.9.5
  * @param array $plugin_array
  * @return array
  */
@@ -45,7 +41,6 @@ function wpua_add_tinymce_plugin($plugins) {
 
 /**
  * Call TinyMCE window content via admin-ajax
- * @since 1.4
  */
 function wpua_ajax_tinymce() {
   include_once(WPUA_INC.'tinymce/window.php');

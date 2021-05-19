@@ -2,14 +2,12 @@
 /**
  * Updates for legacy settings.
  *
- * @package WP User Avatar
- * @version 1.9.13
+ * @package Custom User Avatar
  */
 
 class WP_User_Avatar_Update {
   /**
    * Constructor
-   * @since 1.8
    * @uses bool $wpua_default_avatar_updated
    * @uses bool $wpua_media_updated
    * @uses bool $wpua_users_updated
@@ -30,7 +28,6 @@ class WP_User_Avatar_Update {
 
   /**
    * Update default avatar to new format
-   * @since 1.4
    * @uses string $avatar_default
    * @uses string $mustache_original
    * @uses int $wpua_avatar_default
@@ -55,7 +52,6 @@ class WP_User_Avatar_Update {
 
   /**
    * Rename user meta to match database settings
-   * @since 1.4
    * @uses int $blog_id
    * @uses object $wpdb
    * @uses delete_user_meta()
@@ -85,7 +81,6 @@ class WP_User_Avatar_Update {
 
   /**
    * Add media state to existing avatars
-   * @since 1.4
    * @uses int $blog_id
    * @uses object $wpdb
    * @uses add_post_meta()
@@ -107,7 +102,6 @@ class WP_User_Avatar_Update {
 
 /**
  * Initialize
- * @since 1.9.2
  */
 function wpua_update_init() {
   global $wpua_update;

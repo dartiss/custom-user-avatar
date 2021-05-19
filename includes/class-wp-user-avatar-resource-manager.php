@@ -3,8 +3,7 @@
  * Move body CSS to head and JS to footer.
  * Borrowed from NextGEN Gallery C_Photocrati_Resource_Manager class.
  *
- * @package WP User Avatar
- * @version 1.9.13
+ * @package Custom User Avatar
  */
 
 class WP_User_Avatar_Resource_Manager {
@@ -23,7 +22,6 @@ class WP_User_Avatar_Resource_Manager {
    * Start buffering all generated output. We'll then do two things with the buffer
    * 1) Find stylesheets lately enqueued and move them to the header
    * 2) Ensure that wp_print_footer_scripts() is called
-   * @since 1.9.5
    */
   function __construct() {
     // Validate the request
@@ -35,7 +33,6 @@ class WP_User_Avatar_Resource_Manager {
   /**
    * Created early as possible in the wp_footer action this is the string to which we
    * will move JS resources after
-   * @since 1.9.8
    */
   function print_marker() {
     print $this->marker;
@@ -43,7 +40,6 @@ class WP_User_Avatar_Resource_Manager {
 
   /**
    * Determines if the resource manager should perform its routines for this request
-   * @since 1.9.5
    * @return bool
    */
   function validate_request() {
@@ -71,7 +67,6 @@ class WP_User_Avatar_Resource_Manager {
 
   /**
    * Start the output buffers
-   * @since 1.9.5
    */
   function start_buffer() {
     if(defined('WPUA_DISABLE_RESOURCE_MANAGER') && WPUA_DISABLE_RESOURCE_MANAGER) {
@@ -87,7 +82,7 @@ class WP_User_Avatar_Resource_Manager {
   }
 
   /**
-    * @since 1.9.5
+    * 
    */
   function get_resources() {
     ob_start();
@@ -104,7 +99,6 @@ class WP_User_Avatar_Resource_Manager {
 
   /**
    * Output the buffer after PHP execution has ended (but before shutdown)
-   * @since 1.9.5
    * @param string $content
    * @return string
    */
@@ -115,7 +109,6 @@ class WP_User_Avatar_Resource_Manager {
   /**
    * Removes the closing </html> tag from the output buffer. We'll then write our own closing tag
    * in the shutdown function after running wp_print_footer_scripts()
-   * @since 1.9.5
    * @param string $content
    * @return mixed
    */
@@ -127,7 +120,6 @@ class WP_User_Avatar_Resource_Manager {
 
   /**
    * Moves resources to their appropriate place
-   * @since 1.9.5
    */
   function move_resources() {
     if($this->valid_request) {
@@ -147,7 +139,6 @@ class WP_User_Avatar_Resource_Manager {
 
   /**
    * When PHP has finished, we output the footer scripts and closing tags
-   * @since 1.9.5
    */
   function output_buffer($in_shutdown=FALSE) {
     // If the footer scripts haven't been outputted, then
@@ -158,9 +149,9 @@ class WP_User_Avatar_Resource_Manager {
       if(defined('W3TC') && defined('WP_DEBUG') && WP_DEBUG && !is_admin()) {
         if(!defined('DONOTCACHEPAGE')) define('DONOTCACHEPAGE', TRUE);
         if(!did_action('wp_footer')) {
-          error_log("We're sorry, but your theme's page template didn't make a call to wp_footer(), which is required by WP User Avatar. Please add this call to your page templates.");
+          error_log("We're sorry, but your theme's page template didn't make a call to wp_footer(), which is required by Custom User Avatar. Please add this call to your page templates.");
         } else {
-          error_log("We're sorry, but your theme's page template didn't make a call to wp_print_footer_scripts(), which is required by WP User Avatar. Please add this call to your page templates.");
+          error_log("We're sorry, but your theme's page template didn't make a call to wp_print_footer_scripts(), which is required by Custom User Avatar. Please add this call to your page templates.");
         }
       // We don't want to manipulate the buffer if it doesn't contain HTML
       } elseif(strpos($this->buffer, '</body>') === FALSE) {
@@ -192,14 +183,13 @@ class WP_User_Avatar_Resource_Manager {
 
   /**
    * PHP shutdown callback. Manipulate and output the buffer
-   * @since 1.9.5
    */
   function shutdown() {
     if($this->run_shutdown) echo $this->output_buffer(TRUE);
   }
 
   /**
-    * @since 1.9.5
+    * 
    */
   static function init() {
     $klass = get_class();

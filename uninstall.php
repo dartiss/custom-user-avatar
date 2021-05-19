@@ -2,12 +2,10 @@
 /**
  * Remove user metadata and options on plugin delete.
  *
- * @package WP User Avatar
- * @version 1.9.13
+ * @package Custom User Avatar
  */
 
 /**
- * @since 1.4
  * @uses int $blog_id
  * @uses object $wpdb
  * @uses delete_option()

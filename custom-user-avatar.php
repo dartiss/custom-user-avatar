@@ -1,14 +1,29 @@
 <?php
-/*
-Plugin Name: WP User Avatar
-Plugin URI: http://wordpress.org/plugins/wp-user-avatar/
-Description: Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar.
-Author: ProfilePress
-Author URI: https://profilepress.net/
-Version: 2.2.16
-Text Domain: wp-user-avatar
-Domain Path: /lang/
-*/
+/**
+ * Custom User Avatar
+ *
+ * @package           custom-user-avatar
+ * @author            David Artiss
+ * @license           GPL-2.0-or-later
+ *
+ * Plugin Name:       Custom User Avatar
+ * Plugin URI:        https://wordpress.org/support/plugin/custom-user-avatar/
+ * Description:       👤 Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar.
+ * Version:           1.0
+ * Requires at least: 4.0
+ * Author:            David Artiss
+ * Author URI:        https://artiss.blog
+ * Text Domain:       wp-user-avatar
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License version 2, as published by the Free Software Foundation. You may NOT assume
+ * that you can use any other version of the GPL.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 if(!defined('ABSPATH')) {
   die('You are not allowed to call this page directly.');
@@ -20,7 +35,6 @@ if(!defined('ABSPATH')) {
 class WP_User_Avatar_Setup {
   /**
    * Constructor
-   * @since 1.9.2
    */
   public function __construct() {
     $this->_define_constants();
@@ -30,7 +44,6 @@ class WP_User_Avatar_Setup {
 
   /**
    * Define paths
-   * @since 1.9.2
    */
   private function _define_constants() {
     define('WPUA_VERSION', '2.2.16');
@@ -43,7 +56,6 @@ class WP_User_Avatar_Setup {
 
   /**
    * WordPress includes used in plugin
-   * @since 1.9.2
    * @uses is_admin()
    */
   private function _load_wp_includes() {
@@ -62,8 +74,7 @@ class WP_User_Avatar_Setup {
   }
 
   /**
-   * Load WP User Avatar
-   * @since 1.9.2
+   * Load Custom User Avatar
    * @uses bool $wpua_tinymce
    * @uses is_admin()
    */
@@ -78,7 +89,6 @@ class WP_User_Avatar_Setup {
     require_once(WPUA_INC.'class-wp-user-avatar-subscriber.php');
     require_once(WPUA_INC.'class-wp-user-avatar-update.php');
     require_once(WPUA_INC.'class-wp-user-avatar-widget.php');
-    require_once(WPUA_INC.'mo-notice.php');
     
     // Load TinyMCE only if enabled
     if((bool) $wpua_tinymce == 1) {

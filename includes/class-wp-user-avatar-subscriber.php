@@ -2,14 +2,12 @@
 /**
  * Settings only for subscribers and contributors.
  *
- * @package WP User Avatar
- * @version 1.9.13
+ * @package Custom User Avatar
  */
 
 class WP_User_Avatar_Subscriber {
   /**
    * Constructor
-   * @since 1.8
    * @uses object $wp_user_avatar
    * @uses bool $wpua_allow_upload
    * @uses add_action()
@@ -26,7 +24,6 @@ class WP_User_Avatar_Subscriber {
 
   /**
    * Allow multipart data in form
-   * @since 1.4.1
    */
   public function wpua_add_edit_form_multipart_encoding() {
     echo ' enctype="multipart/form-data"';
@@ -34,7 +31,6 @@ class WP_User_Avatar_Subscriber {
 
   /**
    * Give subscribers edit_posts capability
-   * @since 1.8.3
    * @uses int $blog_id
    * @uses object $wpdb
    * @uses bool $wpua_allow_upload
@@ -56,7 +52,6 @@ class WP_User_Avatar_Subscriber {
 
 /**
  * Initialize
- * @since 1.9.5
  */
 function wpua_subscriber_init() {
   global $wpua_subscriber;

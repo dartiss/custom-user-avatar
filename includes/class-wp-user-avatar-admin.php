@@ -2,18 +2,15 @@
 /**
  * Defines all of administrative, activation, and deactivation settings.
  *
- * @package WP User Avatar
- * @version 1.9.13
+ * @package Custom User Avatar
  */
 
 class WP_User_Avatar_Admin {
   /**
    * Constructor
-   * @since 1.8
    * @uses bool $show_avatars
    * @uses add_action()
    * @uses add_filter()
-   * @uses load_plugin_textdomain()
    * @uses register_activation_hook()
    * @uses register_deactivation_hook()
    */
@@ -23,9 +20,6 @@ class WP_User_Avatar_Admin {
     register_activation_hook(WPUA_DIR.'wp-user-avatar.php', array($this, 'wpua_options'));
     // Settings saved to wp_options
     add_action('admin_init', array($this, 'wpua_options'));
-    // Remove subscribers edit_posts capability
-    // Translations
-    load_plugin_textdomain('wp-user-avatar', "", WPUA_FOLDER.'/lang');
     // Admin menu settings
     add_action('admin_menu', array($this, 'wpua_admin'));
     add_action('admin_init', array($this, 'wpua_register_settings'));
@@ -51,7 +45,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Settings saved to wp_options
-   * @since 1.4
    * @uses add_option()
    */
   public function wpua_options() {
@@ -87,7 +80,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * On deactivation
-   * @since 1.4
    * @uses int $blog_id
    * @uses object $wpdb
    * @uses get_blog_prefix()
@@ -109,12 +101,11 @@ class WP_User_Avatar_Admin {
 
   /**
    * Add options page and settings
-   * @since 1.4
    * @uses add_menu_page()
    * @uses add_submenu_page()
    */
   public function wpua_admin() {
-    add_menu_page(__('WP User Avatar', 'wp-user-avatar'), __('Avatars', 'wp-user-avatar'), 'manage_options', 'wp-user-avatar', array($this, 'wpua_options_page'), WPUA_URL.'images/wpua-icon.png');
+    add_menu_page(__('Custom User Avatar', 'wp-user-avatar'), __('Avatars', 'wp-user-avatar'), 'manage_options', 'wp-user-avatar', array($this, 'wpua_options_page'), WPUA_URL.'images/wpua-icon.png');
     add_submenu_page('wp-user-avatar', __('Settings' , 'wp-user-avatar'), __('Settings' , 'wp-user-avatar'), 'manage_options', 'wp-user-avatar', array($this, 'wpua_options_page'));
     $hook = add_submenu_page('wp-user-avatar', __('Library','wp-user-avatar'), __('Library', 'wp-user-avatar'), 'manage_options', 'wp-user-avatar-library', array($this, 'wpua_media_page'));
     add_action("load-$hook", array($this, 'wpua_media_screen_option'));
@@ -123,7 +114,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Checks if current page is settings page
-   * @since 1.8.3
    * @uses string $pagenow
    * @return bool
    */
@@ -135,7 +125,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Media page
-   * @since 1.8
    */
   public function wpua_media_page() {
     require_once(WPUA_INC.'wpua-media-page.php');
@@ -143,7 +132,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Avatars per page
-   * @since 1.8.10
    * @uses add_screen_option()
    */
   public function wpua_media_screen_option() {
@@ -158,7 +146,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Save per page setting
-   * @since 1.8.10
    * @param int $status
    * @param string $option
    * @param int $value
@@ -171,7 +158,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Options page
-   * @since 1.4
    */
   public function wpua_options_page() {
     require_once(WPUA_INC.'wpua-options-page.php');
@@ -179,7 +165,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Whitelist settings
-   * @since 1.9
    * @uses apply_filters()
    * @uses register_setting()
    * @return array
@@ -201,7 +186,6 @@ class WP_User_Avatar_Admin {
     $settings[] = register_setting('wpua-settings-group', 'wp_user_avatar_upload_size_limit', 'intval');
     /**
      * Filter admin whitelist settings
-     * @since 1.9
      * @param array $settings
      */
     return apply_filters('wpua_register_settings', $settings);
@@ -209,7 +193,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Add default avatar
-   * @since 1.4
    * @uses string $avatar_default
    * @uses string $mustache_admin
    * @uses string $mustache_medium
@@ -271,7 +254,7 @@ class WP_User_Avatar_Admin {
     // Add WPUA to list
     $wpua_list = "\n\t<label><input type='radio' name='avatar_default' id='wp_user_avatar_radio' value='wp_user_avatar'$selected_avatar /> ";
     $wpua_list .= preg_replace("/src='(.+?)'/", "src='\$1'", $avatar_thumb_img);
-    $wpua_list .= ' '.__('WP User Avatar', 'wp-user-avatar').'</label>';
+    $wpua_list .= ' '.__('Custom User Avatar', 'wp-user-avatar').'</label>';
     $wpua_list .= '<p id="wpua-edit"><button type="button" class="button" id="wpua-add" name="wpua-add" data-avatar_default="true" data-title="'.__('Choose Image').': '.__('Default Avatar').'">'.__('Choose Image','wp-user-avatar').'</button>';
     $wpua_list .= '<span id="wpua-remove-button"'.$hide_remove.'><a href="#" id="wpua-remove">'.__('Remove','wp-user-avatar').'</a></span><span id="wpua-undo-button"><a href="#" id="wpua-undo">'.__('Undo','wp-user-avatar').'</a></span></p>';
     $wpua_list .= '<input type="hidden" id="wp-user-avatar" name="avatar_default_wp_user_avatar" value="'.$wpua_avatar_default.'">';
@@ -285,7 +268,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Add default avatar_default to whitelist
-   * @since 1.4
    * @param array $options
    * @return array $options
    */
@@ -296,35 +278,48 @@ class WP_User_Avatar_Admin {
 
   /**
    * Add actions links on plugin page
-   * @since 1.6.6
-   * @param array $links
-   * @param string $file
+   * @param array $actions
+   * @param string $plugin_file
    * @return array $links
    */
-  public function wpua_action_links($links, $file) {
-    if(basename(dirname($file)) == 'wp-user-avatar') {
-      $links[] = '<a href="'.esc_url(add_query_arg(array('page' => 'wp-user-avatar'), admin_url('admin.php'))).'">'.__('Settings','wp-user-avatar').'</a>';
-    }
-    return $links;
+  public function wpua_action_links( $actions, $plugin_file ) {
+
+	// Make sure we only perform actions for this specific plugin!
+	if ( strpos( $plugin_file, 'custom-user-avatar.php' ) !== false ) {
+
+		// Add link to the settings page.
+		array_unshift( $actions, '<a href="' . admin_url() . 'admin.php?page=wp-user-avatar">' . __( 'Settings', 'wp-user-avatar' ) . '</a>' );
+
+	}
+
+	return $actions;
   }
 
   /**
    * Add row meta on plugin page
-   * @since 1.6.6
    * @param array $links
    * @param string $file
    * @return array $links
    */
-  public function wpua_row_meta($links, $file) {
-    if(basename(dirname($file)) == 'wp-user-avatar') {
-      $links[] = '<a href="http://wordpress.org/support/plugin/wp-user-avatar" target="_blank">'.__('Support Forums','wp-user-avatar').'</a>';
-    }
-    return $links;
-  }
+
+  	public function wpua_row_meta( $links, $file ) {
+
+		if ( false !== strpos( $file, 'custom-user-avatar.php' ) ) {
+
+    		$links = array_merge(
+    			$links,
+      			array( '<a href="https://github.com/dartiss/custom-user-avatar">' . __( 'Github', 'wp-user-avatar' ) . '</a>' ),
+      			array( '<a href="https://wordpress.org/support/plugin/custom-user-avatar">' . __( 'Support', 'wp-user-avatar' ) . '</a>' ),
+      			array( '<a href="https://artiss.blog/donate">' . __( 'Donate', 'wp-user-avatar' ) . '</a>' ),
+      			array( '<a href="https://wordpress.org/support/plugin/custom-user-avatar/reviews/#new-post">' . __( 'Write a Review', 'wp-user-avatar' ) . '&nbsp;⭐️⭐️⭐️⭐️⭐️</a>' )
+    		);
+  		}
+
+		return $links;
+	}
 
   /**
    * Add column to Users table
-   * @since 1.4
    * @param array $columns
    * @return array
    */
@@ -334,7 +329,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Show thumbnail in Users table
-   * @since 1.4
    * @param string $value
    * @param string $column_name
    * @param int $user_id
@@ -358,7 +352,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Get list table
-   * @since 1.8
    * @param string $class
    * @param array $args
    * @return object
@@ -371,7 +364,6 @@ class WP_User_Avatar_Admin {
 
   /**
    * Add media states
-   * @since 1.4
    * @param array $states
    * @uses object $post
    * @uses int $wpua_avatar_default
@@ -393,7 +385,6 @@ class WP_User_Avatar_Admin {
     }
     /**
      * Filter media states
-     * @since 1.4
      * @param array $states
      */
     return apply_filters('wpua_add_media_state', $states);
@@ -403,7 +394,6 @@ class WP_User_Avatar_Admin {
 
 /**
  * Initialize
- * @since 1.9.2
  */
 function wpua_admin_init() {
   global $wpua_admin;
