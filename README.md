@@ -10,7 +10,7 @@ The original WP User Avatar, popular amongst users wishing to simple manager the
 
 This, therefore, is a fork of the plugin before all that occurred, at version 2.2.16.
 
-What has changed from that? Apart from renaming it, all advertising has been removed (and will remain removed), along with some redundant files. It also now uses the automatic translation service which comes as being part of the plugin directory. Other than that, a few minor tweaks have been made, but nothing you are likely to (yet) notice.
+What has changed from that? Apart from renaming it, all advertising has been removed (and will remain removed), along with some redundant files. It also now uses the automatic translation service which comes as being part of the plugin directory. Other than that, a few minor tweaks have been made, images have been compressed but nothing you are likely to (yet) notice.
 
 What has been retained is the old naming of functions and settings - what this means is that if you used WP User Avatar before, your existing configuration will automatically work with this plugin as well. Shortcodes and functions calls too remain exactly the same too.
 
