@@ -4,7 +4,7 @@ WordPress currently only allows you to use custom avatars that are uploaded thro
 
 **This is a fork of the popular WP User Avatar plugin, before it became ProfilePress, and is free of all advertising.**
 
-##Why this was forked from WP User Avatar and what is different?##
+## Why this was forked from WP User Avatar and what is different? ##
 
 The original WP User Avatar, popular amongst users wishing to simple manager their site avatars, was renamed to ProfilePress at version 3.0 and made into a full membership plugin. A lot of users, however, didn't want the new functionality. On top of this, some people reported increasing errors and decreasing site speed as a result. Indeed, the resulting up-roar even made [WP Tavern](https://wptavern.com/profilepress-rebrands-and-repurposes-wp-user-avatar-now-a-membership-plugin-users-revolt-via-the-wordpress-review-system).
 
@@ -14,7 +14,7 @@ What has changed from that? Apart from renaming it, all advertising has been rem
 
 What has been retained is the old naming of functions and settings - what this means is that if you used WP User Avatar before, your existing configuration will automatically work with this plugin as well. Shortcodes and functions calls too remain exactly the same too.
 
-##What are the future plans for this plugin?##
+## What are the future plans for this plugin? ##
 
 Please see the [Github issues page](https://github.com/dartiss/custom-user-avatar/issues "Github") for full details, but essentially...
 
